@@ -1,14 +1,15 @@
 import express from 'express'
 import { GoogleGenAI } from "@google/genai";
 import cors from 'cors'
-
+import dotenv from 'dotenv'
 const PORT = 3000;
 const app = express()
 app.use(cors())
 app.use(express.json())
 
-const GEMINI_API_KEY = 'AIzaSyCDH2w4mJkO0qAlpT8NjtPzKDOk6PpfNoI'
-const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+dotenv.config()
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 const systemPrompt = `
 You are an expert AI Developer Assistant named CodeFlash.
