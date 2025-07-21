@@ -84,7 +84,6 @@ Visit: `http://localhost:5173`
 <img src="./demo/error.png" width="300"/>
 <img src="./demo/fixed.png" width="300"/>
 </div>
----
 
 ## ✍️ Prompt Examples
 
