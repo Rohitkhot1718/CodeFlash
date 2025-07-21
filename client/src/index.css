@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+body{
+  background-color: oklch(21% 0.006 285.885);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.markdown-body p {
+  margin: 2px;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  margin: 1rem 0 0.5rem;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body li {
+  list-style: disc;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body ol li {
+  list-style: decimal;
+}
+
+li code {
+  background-color: #1e1e1e;
+  color: #00e676;
+  padding: 3px 6px;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-weight: normal;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: loader 1.5s linear infinite;
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fixing-progress {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0%;
+    left: 100%;
+  }
+}
+.animate-fixing-progress {
+  animation: fixing-progress 1.5s ease-in-out infinite;
+}
+
+.wrapper {
+	padding-left: 0em;
+	padding-right: 0em;
+	margin: auto;
+	display: block;
+	width: 85px;
+}
+
+.cssload-loader {
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	margin: 1em;
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+
+.cssload-loader {
+	width: 21px;
+	height: 21px;
+	border-radius: 50%;
+	margin: 1em;
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+}
+.cssload-loader,
+.cssload-loader:before,
+.cssload-loader:after {
+	animation: 0.95s infinite ease-in-out;
+}
+.cssload-loader:before,
+.cssload-loader:after {
+	width: 100%; 
+	height: 100%;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+		content: "";
+}
+
+.cssload-loader {
+		animation: cssload-animation1 0.95s infinite linear;
+}
+
+.cssload-loader:before,
+.cssload-loader:after {
+		content: "";
+		width: 80%;
+		height: 80%;
+		background-color: rgb(255,255,255);
+		top: 5%;
+}
+.cssload-loader:before {
+		left: -5%;
+		animation: cssload-animation2 0.95s infinite alternate ease-in-out;
+		transform-origin: 10% 50%;
+}
+.cssload-loader:after {
+		left: auto;
+		right: -5%;
+		animation: cssload-animation2 0.95s 0.95s infinite alternate ease-in-out;
+		transform: scale(0);
+		transform-origin: 90% 50%;
+}
+
+
+@keyframes cssload-animation1 {
+	0%	 { transform: rotate(20deg); }
+	100% { transform: rotate(380deg); }
+}
+
+@keyframes cssload-animation2 {
+	0%	 { transform: scale(0); }
+	100% { transform: scale(1); }
+}
