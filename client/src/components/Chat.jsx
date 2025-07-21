@@ -13,6 +13,7 @@ import ChatInput from "./ChatInput";
 import Preview from "./Preview";
 import CodeEditor from "./CodeEditor";
 import Interface from "./Interface";
+import Tooltip from "./Tooltip";
 
 const Chat = () => {
   const [input, setInput] = useState("");
@@ -178,27 +179,32 @@ const Chat = () => {
                         rehypePlugins={[rehypeHighlight]}
                       />
                       {message.text.res && (
-                        <div
-                          className="w-full bg-zinc-800 rounded-[5px] my-2 py-3 px-2 border-4 border-zinc-700 cursor-pointer flex items-center"
-                          onClick={() => {
-                            setCodeText(message.text.res.code);
-                            setSelectedDependencies(
-                              message.text.res.dependencies
-                            );
-                            setResetCode(message.text.res.code);
-                            setSelectVersionLabel(
-                              message.text.res.versionLabel
-                            );
-                          }}
+                        <Tooltip
+                          text="Click to preview this version"
+                          position="top"
                         >
-                          <div className="bg-zinc-700 p-2 rounded-[5px]">
-                            V{version++}
-                          </div>
+                          <div
+                            className="w-full bg-zinc-800 rounded-[5px] my-2 py-3 px-2 border-4 border-zinc-700 cursor-pointer flex items-center"
+                            onClick={() => {
+                              setCodeText(message.text.res.code);
+                              setSelectedDependencies(
+                                message.text.res.dependencies
+                              );
+                              setResetCode(message.text.res.code);
+                              setSelectVersionLabel(
+                                message.text.res.versionLabel
+                              );
+                            }}
+                          >
+                            <div className="bg-zinc-700 p-2 rounded-[5px]">
+                              V{version++}
+                            </div>
 
-                          <div className="ml-2">
-                            {message.text.res.versionLabel}
+                            <div className="ml-2">
+                              {message.text.res.versionLabel}
+                            </div>
                           </div>
-                        </div>
+                        </Tooltip>
                       )}
                     </div>
                   </div>
@@ -228,48 +234,56 @@ const Chat = () => {
             <div className="flex justify-between items-center py-1 ">
               <div className="flex items-center gap-2">
                 <div className="flex justify-center items-center gap-1 bg-zinc-900 px-2 p-1 rounded-[10px]">
-                  <CodeXml
-                    className={`${
-                      isPreview && hasCode ? "bg-zinc-800" : ""
-                    } p-1 rounded-[5px] cursor-pointer ${
-                      !hasCode ? "opacity-30 cursor-not-allowed" : ""
-                    }`}
-                    size={25}
-                    onClick={() => hasCode && setIsPreview(true)}
-                  />
-                  <Eye
-                    className={`${
-                      !isPreview && hasCode ? "bg-zinc-800" : ""
-                    } p-1 rounded-[5px] cursor-pointer ${
-                      !hasCode ? "opacity-30 cursor-not-allowed" : ""
-                    }`}
-                    size={25}
-                    onClick={() => hasCode && setIsPreview(false)}
-                  />
+                  <Tooltip text={"Code"} position="left" className="mr-3">
+                    <CodeXml
+                      className={`${
+                        isPreview && hasCode ? "bg-zinc-800" : ""
+                      } p-1 rounded-[5px] cursor-pointer ${
+                        !hasCode ? "opacity-30 cursor-not-allowed" : ""
+                      }`}
+                      size={25}
+                      onClick={() => hasCode && setIsPreview(true)}
+                    />
+                  </Tooltip>
+                  <Tooltip text={"Preview"} position="right" className="ml-3">
+                    <Eye
+                      className={`${
+                        !isPreview && hasCode ? "bg-zinc-800" : ""
+                      } p-1 rounded-[5px] cursor-pointer ${
+                        !hasCode ? "opacity-30 cursor-not-allowed" : ""
+                      }`}
+                      size={25}
+                      onClick={() => hasCode && setIsPreview(false)}
+                    />
+                  </Tooltip>
                 </div>
                 <p className="text-[15px]">{selectVersionLabel}</p>
               </div>
               <div className="flex gap-2">
-                <div
-                  className={`bg-zinc-900 px-1 py-2 rounded-[5px] cursor-pointer ${
-                    !hasCode ? "opacity-30 cursor-not-allowed" : ""
-                  }`}
-                  onClick={() => setCodeText(resetCode)}
-                >
-                  <RotateCcw size={20} />
-                </div>
-                <div
-                  className={`bg-zinc-900 px-1 py-2 rounded-[5px] cursor-pointer ${
-                    !hasCode ? "opacity-30 cursor-not-allowed" : ""
-                  }`}
-                  onClick={handleCopy}
-                >
-                  {copied ? (
-                    <ClipboardCheck size={20} />
-                  ) : (
-                    <Clipboard size={20} />
-                  )}
-                </div>
+                <Tooltip text={"Reset"} position="left" className="mr-1">
+                  <div
+                    className={`bg-zinc-900 px-1 py-2 rounded-[5px] cursor-pointer ${
+                      !hasCode ? "opacity-30 cursor-not-allowed" : ""
+                    }`}
+                    onClick={() => setCodeText(resetCode)}
+                  >
+                    <RotateCcw size={20} />
+                  </div>
+                </Tooltip>
+                <Tooltip text={"Copy"} position="left" className="mr-2">
+                  <div
+                    className={`bg-zinc-900 px-1 py-2 rounded-[5px] cursor-pointer ${
+                      !hasCode ? "opacity-30 cursor-not-allowed" : ""
+                    }`}
+                    onClick={handleCopy}
+                  >
+                    {copied ? (
+                      <ClipboardCheck size={20} />
+                    ) : (
+                      <Clipboard size={20} />
+                    )}
+                  </div>
+                </Tooltip>
               </div>
             </div>
             <div className="h-[94%] overflow-auto">
